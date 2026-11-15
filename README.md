@@ -147,7 +147,7 @@ cd member3_csp && python -m unittest discover -v
 |---|---|
 | Ilham Shaikh | Environment & Dynamics |
 | Anasha Khan  | Search & Path Planning |
-| Amir khan    | CSP Puzzle Solver |
+| Amir Hussain Khan    | CSP Puzzle Solver |
 | Ahmed Nouman | Agent Controller & Integration |
 | Zaid Rehman  | Evaluation & Report |
 
