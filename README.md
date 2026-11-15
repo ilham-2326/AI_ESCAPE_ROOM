@@ -145,10 +145,10 @@ cd member3_csp && python -m unittest discover -v
 
 | Member | Role |
 |---|---|
-| Member 1 | Environment & Dynamics |
-| Member 2 | Search & Path Planning |
-| Member 3 | CSP Puzzle Solver |
-| Member 4 | Agent Controller & Integration |
-| Member 5 | Evaluation & Report |
+| Ilham Shaikh | Environment & Dynamics |
+| Anasha Khan  | Search & Path Planning |
+| Amir khan    | CSP Puzzle Solver |
+| Ahmed Nouman | Agent Controller & Integration |
+| Zaid Rehman  | Evaluation & Report |
 
-*Add names or GitHub handles here.*
+
