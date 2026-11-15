@@ -1,0 +1,15 @@
+test_impossible_and_stale_revision (test_integration.KeypadTests.test_impossible_and_stale_revision) ... ok
+test_key_and_current_solution_required (test_integration.KeypadTests.test_key_and_current_solution_required) ... ok
+test_mutable_inputs_detached (test_integration.KeypadTests.test_mutable_inputs_detached) ... ok
+test_rules_invalidate_result (test_integration.KeypadTests.test_rules_invalidate_result) ... ok
+test_default (test_solver.SolverTests.test_default) ... ok
+test_generated (test_solver.SolverTests.test_generated) ... ok
+test_invalid (test_solver.SolverTests.test_invalid) ... ok
+test_leading_zero (test_solver.SolverTests.test_leading_zero) ... ok
+test_oracle (test_solver.SolverTests.test_oracle) ... ok
+test_rule_change (test_solver.SolverTests.test_rule_change) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.165s
+
+OK

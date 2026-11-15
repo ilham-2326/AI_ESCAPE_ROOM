@@ -1,0 +1,2 @@
+# Runtime and tests use only the Python 3.10+ standard library.
+# Pygame belongs to the main game and is not required for this module.

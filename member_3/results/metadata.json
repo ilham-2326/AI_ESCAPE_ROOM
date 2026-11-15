@@ -1,0 +1,11 @@
+{
+  "utc": "2026-11-14T13:02:08.382490+00:00",
+  "python": "3.12.7",
+  "platform": "macOS-26.5.2-arm64-arm-64bit",
+  "seeds": 100,
+  "repeats": 5,
+  "observations": 9000,
+  "timing": "perf_counter; one warm-up per method/case; alternating execution order",
+  "aggregation": "per-instance repeat means, then mean/sample SD/median across seeds",
+  "note": "Valid-result rate includes agreement-based unsatisfiable results; generated original cases are guaranteed satisfiable. Changed-case satisfiability agreement is not an independent proof."
+}
