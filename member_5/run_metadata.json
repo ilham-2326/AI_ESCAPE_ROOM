@@ -1,0 +1,62 @@
+{
+  "created_utc": "2026-11-17T20:58:29.145267+00:00",
+  "script": "member_5/evaluate.py",
+  "levels": [
+    1,
+    2,
+    3
+  ],
+  "algorithms": [
+    "bfs",
+    "dijkstra",
+    "greedy",
+    "astar"
+  ],
+  "seeds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    44
+  ],
+  "seed_count": 31,
+  "max_steps": 3000,
+  "trial_count": 372,
+  "success_count": 372,
+  "failure_count": 0,
+  "output_csv": "member_5/results/raw_results.csv",
+  "notes": [
+    "completion_time_seconds is wall-clock runtime for one headless trial",
+    "simulation_steps is the agent's tick count",
+    "states_explored is the integrated agent's cumulative nodes_expanded counter",
+    "path_cost is the agent's accumulated movement cost",
+    "success is true only when the FSM reaches ESCAPED",
+    "Seed 44 is included explicitly for failure-case inspection"
+  ]
+}
