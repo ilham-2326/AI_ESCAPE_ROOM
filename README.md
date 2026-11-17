@@ -1,154 +1,64 @@
-# AI Escape Room
+# Member 2: Search & Path Planning
 
-**An intelligent agent for dynamic puzzle solving** · CSCI218 Group Project · University of Wollongong in Dubai
+Path planning (BFS, Dijkstra, Greedy, A\*) and adaptive navigation (replanning, plus wait-or-detour around moving guards).
 
-An autonomous agent escapes a grid-world escape room on its own. It has to:
+## Files
 
-1. navigate from the start to the **key** (`K`),
-2. reach the **puzzle terminal** (`T`) and solve a keypad code puzzle,
-3. unlock the **door** (`D`), which stays blocked until the puzzle is solved, and
-4. reach the **exit** (`E`).
-
-The room keeps changing while the agent moves. Guards patrol corridors, floor tiles collapse into walls, and the puzzle rules change partway through the game. The agent has to notice these changes and adapt: replan its route, wait for a guard to pass, or re-solve the puzzle.
-
----
-
-## AI techniques used
-
-| Problem | Technique |
+| File | Purpose |
 |---|---|
-| Finding a route through the grid | BFS, Dijkstra (uniform-cost search), Greedy best-first, A* with a Manhattan-distance heuristic |
-| Routes blocked by events | Path validity checks and replanning from the agent's current position |
-| Moving guards | A "wait-or-detour" strategy plus an extra cost for cells next to a guard |
-| Keypad code puzzle | Constraint satisfaction problem (CSP): backtracking + MRV + forward checking |
-| Puzzle rules changing | Versioned puzzle revisions, so an old solution can never unlock the door |
-| Overall agent behaviour | Finite-state machine controller (Member 4) |
+| `search.py` | `plan()`, `path_still_valid()`, `navigate()`, heuristics |
+| `demo_search.py` | Terminal demo: algorithm table, explored-area pictures, live escape |
+| `benchmark_search.py` | 960-run experiment → CSV + charts in `results/` |
+| `results/` | Benchmark output, already generated (CSV + 3 PNG charts) |
+| `tests/test_search.py` | 69 pytest tests |
+| `REPORT_SECTION.md` | Draft of the "Search & Replanning" report section, with real results |
 
----
+## Run
 
-## Project structure
-
-```
-AI_ESCAPE_ROOM/
-├── member_1/      Environment & Dynamics
-├── member_2/      Search & Path Planning
-├── member3_csp/   CSP Puzzle Solver
-├── member_4/      Agent Controller & Integration
-└── member_5/      Evaluation & Report
-```
-
-Each folder has its own README with full run commands and its API.
-
-### Member 1: Environment & Dynamics (`member_1/`)
-
-Builds the escape room world.
-
-- Grid maps loaded from `.txt` files. Map symbols: `#` wall, `.` floor (cost 1), `~` mud (cost 3), `C` collapsible floor, `M` guard start, plus `S K T D E`.
-- Three hand-designed levels of increasing difficulty:
-
-  | Level | Size | Dynamics |
-  |---|---|---|
-  | 1 Easy | 11×15 | None (baseline) |
-  | 2 Medium | 14×20 | 1 patrolling guard; the short route to the key collapses at step 8 |
-  | 3 Hard | 19×20 | 2 guards, a collapse at step 6, mud on the detour, puzzle rules change at step 70 |
-
-- A random level generator (`random_level(seed)`) that only produces solvable rooms, for large experiments.
-- Each step the environment emits events (`obstacle_moved`, `route_blocked`, `rule_changed`) for the other modules to react to.
-- 46 automated tests.
-
-### Member 2: Search & Path Planning (`member_2/`)
-
-Moves the agent through the room.
-
-- Four algorithms: **BFS**, **Dijkstra**, **Greedy best-first** and **A\***.
-- A* uses Manhattan distance. With 4-directional moves and a minimum step cost of 1, this heuristic is admissible and consistent, so A* always finds the cheapest path.
-- `navigate()` runs a plan step by step and replans from the agent's current position whenever the remaining path gets blocked.
-- Two strategies for moving guards: **replan** and **wait-or-detour**.
-- A 960-run benchmark with CSV results and charts in `member_2/results/`.
-- 69 automated tests.
-
-### Member 3: CSP Puzzle Solver (`member3_csp/`)
-
-Solves the 4-digit keypad code at the terminal.
-
-- **Variables:** the four code digits. **Domains:** allowed digits 0–9.
-- **Constraints:** the digits add up to a target total (default 20), one digit is greater than another (default: first > third), and all digits are different.
-- **Optimised solver:** backtracking with MRV (minimum remaining values) and forward checking. It is compared against a plain backtracking baseline.
-- `change_rules()` creates a new puzzle revision when the rules change. `KeypadController` rejects answers from older revisions, and unsolvable rule sets keep the door locked.
-- Easy, medium and hard puzzles have domain sizes of 4, 7 and 10.
-- A 9,000-observation benchmark in `member3_csp/results/`.
-
-### Member 4: Agent Controller & Integration (`member_4/`)
-
-*(To be completed by Member 4.)* A finite-state machine connects the modules. It moves to the key, then the terminal, solves the puzzle, opens the door and heads for the exit. It handles events in between, such as replanning on `route_blocked` and re-solving on `rule_changed`.
-
-### Member 5: Evaluation & Report (`member_5/`)
-
-*(To be completed by Member 5.)* End-to-end experiments across all levels: success rate, steps taken, completion time and replanning count.
-
----
-
-## Key results so far
-
-**Search (level 3, hard, average over 30 runs):**
-
-| Algorithm + strategy | Success | Nodes expanded | Cost vs. optimal |
-|---|---|---|---|
-| BFS + replan | 100% | 3,572 | 2.66× |
-| Dijkstra + replan | 100% | 3,147 | 1.95× |
-| Greedy + replan | 90% | 1,694 | 2.41× |
-| **A\* + wait-or-detour** | **100%** | **836** | **1.45×** |
-
-A* with wait-or-detour expanded about 4× fewer nodes than BFS and took the cheapest routes.
-
-**CSP (average assignments tried per puzzle):**
-
-| Difficulty | Baseline backtracking | Backtracking + MRV + forward checking |
-|---|---|---|
-| Easy | 25.6 | 6.1 |
-| Medium | 67.6 | 6.1 |
-| Hard | 143.4 | 6.4 |
-
-The optimised solver's effort stays almost flat as puzzles get harder, while the baseline's effort grows quickly.
-
----
-
-## Getting started
-
-**Requirements:** Python 3.10+. Everything runs on the standard library. `pytest` is needed for the tests, and `matplotlib` only for the charts.
+This folder expects `member_1` next to it, which is the layout you received. In the merged repo, put the files in the same folder and it works the same way.
 
 ```bash
-git clone https://github.com/ilham-2326/AI_ESCAPE_ROOM.git
-cd AI_ESCAPE_ROOM
-pip install pytest matplotlib
+python demo_search.py                         # compare 4 algorithms on all levels
+python demo_search.py --watch 3               # watch A* escape level 3 live
+python demo_search.py --watch 3 --algo bfs --strategy replan
+python benchmark_search.py                    # full experiment (~5 s)
+pytest tests
 ```
 
-**Run the demos:**
+Requires Python 3.10+ and pytest. matplotlib is optional and only needed for the charts.
 
-```bash
-cd member_1 && python demo_environment.py --play 3      # watch level 3's guards and collapse
-cd member_2 && python demo_search.py --watch 3          # watch A* escape level 3 live
-cd member3_csp && python demo.py                        # solve, change the rules, re-solve
+## API for other members (do not rename)
+
+```python
+from search import plan, path_still_valid, navigate, ALGORITHMS
+
+path, stats = plan(env, start, goal, algo="astar")
+# algo in ("bfs", "dijkstra", "greedy", "astar")
+# path = [(r,c), ...] start..goal inclusive, or None
+# stats = {"algo", "found", "nodes_expanded", "path_cost", "path_length", "time_ms"}
+
+path, stats, explored = plan(env, s, g, return_explored=True)   # for the GUI overlay
+plan(env, s, g, avoid_obstacles=True)    # +5 cost next to guards
+plan(env, s, g, ignore_obstacles=True)   # plan as if guards weren't there
+
+path_still_valid(env, path, from_index)  # False -> Member 4's FSM enters REPLAN
+
+log = navigate(env, start, goal, algo="astar", start_step=step,
+               obstacle_strategy="wait_or_detour")   # or "replan"
+# log: success, steps, end_step, end_pos, path_taken, path_cost,
+#      replans, waits, plans, nodes_expanded, planning_time_ms, events
 ```
 
-**Run the tests:**
+`navigate()` is the reference movement loop. Member 4's FSM can call it once per leg (S→K, K→T, T→E), or copy its per-step logic into the movement states. Pass `on_step=callback` to redraw the GUI after every step.
 
-```bash
-pytest member_1/tests          # 46 tests
-pytest member_2/tests          # 69 tests
-cd member3_csp && python -m unittest discover -v
-```
+`search.py` does **not** import `environment.py`. It only needs an object with `neighbors`, `cost` and `is_blocked`, so Member 4's stubs work with it too.
 
----
+## Design decisions
 
-## Team
-
-| Member | Role |
-|---|---|
-| Ilham Shaikh | Environment & Dynamics |
-| Anasha Khan  | Search & Path Planning |
-| Amir Hussain Khan    | CSP Puzzle Solver |
-| Ahmed Nouman | Agent Controller & Integration |
-| Zaid Rehman  | Evaluation & Report |
-
-
+- **One best-first function covers 3 algorithms.** A\*, Dijkstra and Greedy differ only in the priority they sort by, which keeps the comparison fair.
+- **Node counting:** `nodes_expanded` counts nodes popped from the frontier and expanded, not nodes pushed. Stale heap entries are skipped through the closed set.
+- **Heuristic:** Manhattan distance. It's admissible and consistent here (4-directional movement, minimum step cost 1), so A\* is optimal. A test checks admissibility on every cell.
+- **Tie-breaking:** ties are broken by insertion order (a counter), so runs are deterministic.
+- **Two kinds of change are handled differently:**
+  - **Permanent (collapse, door):** the whole remaining path is checked every step, and the agent replans from its current position if any cell is now a wall.
+  - **Temporary (guards):** handled only when a guard is in the next cell. `wait_or_detour` takes the detour if it costs ≤ 6 extra, otherwise waits, but for at most 4 steps in a row to avoid deadlock. `replan` treats the guard as a wall (the baseline).
