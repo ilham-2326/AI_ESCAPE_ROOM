@@ -1,0 +1,1 @@
+{"seeds":100,"repeats":5,"difficulties":["easy","medium","hard"],"scenarios":["original","rule_changed","impossible"],"methods":["baseline","optimized"],"note":"Documented defaults; pass --seeds and --repeats to benchmark.py to change the run."}

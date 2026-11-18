@@ -1,0 +1,3 @@
+Original: {'status': 'solved', 'code': '2819', 'revision': 1, 'method': 'optimized', 'stats': {'assignments_tried': 8, 'backtracks': 1, 'constraint_checks': 117, 'values_pruned': 66, 'recursive_calls': 6, 'elapsed_ms': 0.4315030000725528}}
+Changed: {'status': 'solved', 'code': '3819', 'revision': 2, 'method': 'optimized', 'stats': {'assignments_tried': 11, 'backtracks': 3, 'constraint_checks': 167, 'values_pruned': 94, 'recursive_calls': 8, 'elapsed_ms': 0.3137029998470098}}
+Impossible puzzle safely kept locked. All integration assertions passed.
