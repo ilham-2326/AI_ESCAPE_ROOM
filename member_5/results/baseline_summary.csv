@@ -1,0 +1,9 @@
+algorithm,agent_type,trials,successes,success_rate_pct,simulation_steps_success_mean,simulation_steps_success_sd,path_cost_success_mean,path_cost_success_sd,states_explored_success_mean,states_explored_success_sd,replans_success_mean,replans_success_sd,waits_success_mean,waits_success_sd,completion_time_seconds_success_mean,completion_time_seconds_success_sd
+bfs,adaptive,93,93,100.0,118.6022,62.5721,121.3871,60.1794,1690.914,1526.039,3.043,2.4535,6.7742,8.0907,0.0118,0.0101
+bfs,plan_once,93,31,33.33,53.0,0.0,64.0,0.0,196.0,0.0,0.0,0.0,0.0,0.0,0.0013,0.0003
+dijkstra,adaptive,93,93,100.0,111.5914,55.5552,111.172,52.4478,1388.5269,1230.1399,2.6989,2.2688,5.3978,6.4843,0.0139,0.0155
+dijkstra,plan_once,93,31,33.33,57.0,0.0,62.0,0.0,191.0,0.0,0.0,0.0,0.0,0.0,0.0015,0.0002
+greedy,adaptive,93,93,100.0,95.7312,32.5794,102.2903,28.918,206.4194,170.6884,1.3011,1.3576,1.9462,2.9354,0.0059,0.0035
+greedy,plan_once,93,31,33.33,57.0,0.0,68.0,0.0,65.0,0.0,0.0,0.0,0.0,0.0,0.0021,0.001
+astar,adaptive,93,93,100.0,95.0645,32.3166,95.4301,29.3289,547.8602,375.85,2.1398,2.0302,2.6344,2.7138,0.0079,0.0043
+astar,plan_once,93,31,33.33,57.0,0.0,62.0,0.0,122.0,0.0,0.0,0.0,0.0,0.0,0.0028,0.001
