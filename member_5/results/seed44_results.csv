@@ -1,0 +1,13 @@
+level,algorithm,seed,success,final_state,completion_time_seconds,simulation_steps,path_cost,states_explored,replans,waits,error
+1,bfs,44,True,ESCAPED,0.00138229,53.0,64.0,196.0,0.0,0.0,
+1,dijkstra,44,True,ESCAPED,0.00184908,57.0,62.0,191.0,0.0,0.0,
+1,greedy,44,True,ESCAPED,0.00135652,57.0,68.0,65.0,0.0,0.0,
+1,astar,44,True,ESCAPED,0.00119309,57.0,62.0,122.0,0.0,0.0,
+2,bfs,44,True,ESCAPED,0.00359764,82.0,80.0,1143.0,7.0,1.0,
+2,dijkstra,44,True,ESCAPED,0.00740014,82.0,80.0,1041.0,6.0,1.0,
+2,greedy,44,True,ESCAPED,0.00231273,103.0,112.0,171.0,6.0,0.0,
+2,astar,44,True,ESCAPED,0.00313447,82.0,80.0,565.0,6.0,1.0,
+3,bfs,44,True,ESCAPED,0.01111593,191.0,181.0,3846.0,4.0,19.0,
+3,dijkstra,44,True,ESCAPED,0.01007182,135.0,133.0,2449.0,3.0,11.0,
+3,greedy,44,True,ESCAPED,0.00388042,115.0,115.0,329.0,1.0,5.0,
+3,astar,44,True,ESCAPED,0.00467333,117.0,117.0,741.0,2.0,5.0,
