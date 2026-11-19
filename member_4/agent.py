@@ -86,7 +86,10 @@ class Agent:
             if solve(candidate).status == 'solved':
                 self.keypad.update_rules(candidate)
                 self.env.door_open = False
-                self.state = State.GO_TO_TERMINAL
+                # Only send the agent back to re-solve if it already has the key;
+                # otherwise it must keep looking for the key first.
+                if self.has_key:
+                    self.state = State.GO_TO_TERMINAL
                 self._plan()
                 self.last_event = f'Puzzle rules updated (sum={total}); solve again'
                 return
