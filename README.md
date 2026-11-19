@@ -1,6 +1,6 @@
 # 🔐 AI Escape Room
 
-An autonomous AI agent that escapes a dynamic grid-world room: it **finds a key, solves a keypad puzzle, unlocks the door and reaches the exit**, while guards patrol, floors collapse and puzzle rules change mid-run.
+It’s An autonomous AI agent that escapes a dynamic grid-world room: it **finds a key, solves a keypad puzzle, unlocks the door and reaches the exit**, while guards patrol, floors collapse and puzzle rules change mid-run.
 
 Built for **CSCI218 – Foundations of AI** at the University of Wollongong in Dubai.
 
